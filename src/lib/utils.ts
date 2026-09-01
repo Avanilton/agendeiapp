@@ -1,5 +1,5 @@
-export function cleanPayload<T extends Record<string, any>>(payload: T): T {
-  const cleaned = { ...payload } as any
+export function cleanPayload<T extends Record<string, unknown>>(payload: T): T {
+  const cleaned = { ...payload } as Record<string, unknown>
   Object.keys(cleaned).forEach(key => {
     if (cleaned[key] === '' || cleaned[key] === undefined) {
       delete cleaned[key]

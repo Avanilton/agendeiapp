@@ -243,7 +243,7 @@ export default function PixConfiguracao() {
     setTesting(false)
   }
 
-  const SecretInput = ({ label, field, placeholder }: { label: string; field: keyof PixConfig; placeholder?: string }) => (
+  const renderSecretInput = (label: string, field: keyof PixConfig, placeholder?: string) => (
     <div className="form-group">
       <label className="form-label">{label}</label>
       <div style={{ position: 'relative' }}>
@@ -348,7 +348,7 @@ export default function PixConfiguracao() {
             <div style={{ padding: '10px 14px', background: '#FFF7ED', borderRadius: 10, fontSize: 13, color: '#92400E', border: '1px solid #FED7AA' }}>
               📋 <strong>Como obter:</strong> Acesse <a href="https://www.mercadopago.com.br/developers/panel" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}>mercadopago.com.br/developers</a> → Suas integrações → Credenciais de produção.
             </div>
-            <SecretInput label="Access Token *" field="mp_access_token" placeholder="APP_USR-..."/>
+            {renderSecretInput("Access Token *", "mp_access_token", "APP_USR-...")}
             <div className="form-group">
               <label className="form-label">Ambiente</label>
               <div style={{ display: 'flex', gap: 10 }}>
@@ -370,8 +370,8 @@ export default function PixConfiguracao() {
               📋 <strong>Como obter:</strong> Acesse <a href="https://sejaefi.com.br" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}>sejaefi.com.br</a> → API → Aplicações → Criar aplicação (ative API Pix) → Meus Certificados.
             </div>
             <div className="grid-2">
-              <SecretInput label="Client ID *" field="efi_client_id" placeholder="Client_Id_..."/>
-              <SecretInput label="Client Secret *" field="efi_client_secret" placeholder="Client_Secret_..."/>
+              {renderSecretInput("Client ID *", "efi_client_id", "Client_Id_...")}
+              {renderSecretInput("Client Secret *", "efi_client_secret", "Client_Secret_...")}
             </div>
             <div className="form-group">
               <label className="form-label">Certificado .p12 (Base64)</label>
@@ -405,7 +405,7 @@ export default function PixConfiguracao() {
             <div style={{ padding: '10px 14px', background: '#F0FDF4', borderRadius: 10, fontSize: 13, color: '#166534', border: '1px solid #BBF7D0' }}>
               📋 <strong>Como obter:</strong> Acesse o <a href="https://studio.picpay.com" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}>PicPay Studio</a> → Lojista → Integrações → Token de acesso.
             </div>
-            <SecretInput label="Token de Acesso (x-picpay-token) *" field="picpay_token" placeholder="Token do painel lojista..."/>
+            {renderSecretInput("Token de Acesso (x-picpay-token) *", "picpay_token", "Token do painel lojista...")}
           </div>
         )}
 

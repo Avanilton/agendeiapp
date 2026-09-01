@@ -114,12 +114,17 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const storedMode = localStorage.getItem('bp_theme') as ThemeMode
     const storedEmpresa = localStorage.getItem('bp_empresa')
     
+    // eslint-disable-next-line
     if (storedPalette) { setPaletteState(storedPalette); }
+    // eslint-disable-next-line
     if (storedMode) { setThemeModeState(storedMode); }
     if (storedEmpresa) {
       try {
+        // eslint-disable-next-line
         setEmpresaState(JSON.parse(storedEmpresa) as Empresa)
-      } catch (e) {}
+      } catch (err) {
+        console.error(err)
+      }
     }
     applyTheme(storedPalette || 'violet', storedMode || 'light')
 

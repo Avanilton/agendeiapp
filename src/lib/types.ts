@@ -60,7 +60,7 @@ export interface Cliente {
   estado?: string
   cep?: string
   observacoes?: string
-  anamnese?: Record<string, any>
+  anamnese?: Record<string, unknown>
   created_at: string
   updated_at: string
 }
