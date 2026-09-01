@@ -147,7 +147,7 @@ export default function ClientesPage() {
   // Search across all text fields
   const searchLower = search.toLowerCase()
   const filtered = clientes.filter(c =>
-    !search || [c.nome, c.telefone, c.email, c.endereco, c.cidade, c.estado, c.observacoes].some(v => v && v.toLowerCase().includes(searchLower))
+    !search || [c.nome, c.telefone, c.email, c.endereco, c.cidade, c.estado, c.observacoes].some(v => v && String(v).toLowerCase().includes(searchLower))
   )
 
   return (
@@ -213,7 +213,18 @@ export default function ClientesPage() {
                       <div style={{ fontSize: 13 }}>{c.cidade} - {c.estado}</div>
                     </td>
                     <td>
-                      <div style={{ fontSize: 13 }}>{c.data_nascimento ? new Date(c.data_nascimento + 'T00:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: 'long' }) : '-'}</div>
+                      <div style={{ fontSize: 13 }}>
+                        {(() => {
+                          if (!c.data_nascimento) return '-'
+                          try {
+                            const date = new Date(c.data_nascimento.includes('T') ? c.data_nascimento : c.data_nascimento + 'T00:00:00')
+                            if (isNaN(date.getTime())) return c.data_nascimento
+                            return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long' })
+                          } catch (e) {
+                            return String(c.data_nascimento)
+                          }
+                        })()}
+                      </div>
                     </td>
                     <td style={{ textAlign: 'right' }}>
                       <div style={{ display: 'flex', gap: 4, justifyContent: 'flex-end' }}>
