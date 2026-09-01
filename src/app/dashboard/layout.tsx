@@ -42,9 +42,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const [showNotifMenu, setShowNotifMenu] = useState(false)
   const unreadCount = notifications.filter(n => !n.read).length
 
-  const logoUrl = themeMode === 'dark'
-    ? 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logo.png'
-    : 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logopb.png'
+  const logoUrl = 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logo.png'
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768)

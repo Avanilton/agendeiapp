@@ -9,9 +9,7 @@ export default function HomePage() {
   const { themeMode } = useApp()
   const [activeFeature, setActiveFeature] = useState(0)
 
-  const logoUrl = themeMode === 'dark'
-    ? 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logo.png'
-    : 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logopb.png'
+  const logoUrl = 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logo.png'
 
   const features = [
     { icon: <Calendar size={24} />, title: 'Agenda Inteligente', desc: 'Visualize e gerencie todos os agendamentos do seu salão em tempo real.' },
