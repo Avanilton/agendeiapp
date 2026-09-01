@@ -15,7 +15,9 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const logoUrl = 'https://qzgjsyeeoydctzbjdxju.supabase.co/storage/v1/object/public/agendei_storage/Logotipo/logo%20agendei%20clpng.png'
+  const logoUrl = themeMode === 'dark'
+    ? 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logo.png'
+    : 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logopb.png'
   const [mode, setMode] = useState<'login' | 'reset'>('login')
   const [resetSent, setResetSent] = useState(false)
   const [resetLoading, setResetLoading] = useState(false)

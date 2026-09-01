@@ -10,8 +10,8 @@ export default function HomePage() {
   const [activeFeature, setActiveFeature] = useState(0)
 
   const logoUrl = themeMode === 'dark'
-    ? 'https://qzgjsyeeoydctzbjdxju.supabase.co/storage/v1/object/public/agendei_storage/Logotipo/logo%20agendei%20clpng.png'
-    : 'https://qzgjsyeeoydctzbjdxju.supabase.co/storage/v1/object/public/agendei_storage/Logotipo/logo%20agendei%20clpng.png'
+    ? 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logo.png'
+    : 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logopb.png'
 
   const features = [
     { icon: <Calendar size={24} />, title: 'Agenda Inteligente', desc: 'Visualize e gerencie todos os agendamentos do seu salão em tempo real.' },

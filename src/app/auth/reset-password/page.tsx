@@ -15,7 +15,9 @@ export default function ResetPasswordPage() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
 
-  const logoUrl = 'https://qzgjsyeeoydctzbjdxju.supabase.co/storage/v1/object/public/agendei_storage/Logotipo/logo%20agendei%20clpng.png'
+  const logoUrl = themeMode === 'dark'
+    ? 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logo.png'
+    : 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logopb.png'
 
   const handleUpdatePassword = async (e: React.FormEvent) => {
     e.preventDefault()

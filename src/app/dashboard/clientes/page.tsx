@@ -178,7 +178,7 @@ export default function ClientesPage() {
       </div>
 
       {loading ? (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{[1,2,3].map(i => <div className="skeleton" style={{ height: 60, borderRadius: 12 }}/>)}</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{[1,2,3].map(i => <div key={i} className="skeleton" style={{ height: 60, borderRadius: 12 }}/>)}</div>
       ) : filtered.length === 0 ? (
         <div className="card glass-card" style={{ textAlign: 'center', padding: '40px 20px' }}>
           <div style={{ fontSize: 40, marginBottom: 16 }}>👥</div>

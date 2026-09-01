@@ -7,17 +7,36 @@ import { createClient } from '@/lib/supabase/client'
 import { useApp } from '@/contexts/AppContext'
 
 function formatPhone(v: string) {
-  const d = v.replace(/\D/g, '')
-  if (d.length <= 10) return d.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3')
-  return d.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3')
+  const d = v.replace(/\D/g, '').substring(0, 11)
+  let res = d
+  if (d.length > 2) res = `(${d.substring(0, 2)}) ${d.substring(2)}`
+  if (d.length > 6 && d.length <= 10) res = `(${d.substring(0, 2)}) ${d.substring(2, 6)}-${d.substring(6)}`
+  if (d.length > 10) res = `(${d.substring(0, 2)}) ${d.substring(2, 7)}-${d.substring(7)}`
+  return res
 }
 
 function formatDoc(v: string) {
-  const digits = v.replace(/\D/g, '')
-  if (digits.length <= 11) {
-    return digits.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
+  const d = v.replace(/\D/g, '').substring(0, 14)
+  if (d.length <= 11) {
+    let res = d
+    if (d.length > 3) res = `${d.substring(0, 3)}.${d.substring(3)}`
+    if (d.length > 6) res = `${d.substring(0, 3)}.${d.substring(3, 6)}.${d.substring(6)}`
+    if (d.length > 9) res = `${d.substring(0, 3)}.${d.substring(3, 6)}.${d.substring(6, 9)}-${d.substring(9)}`
+    return res
+  } else {
+    let res = d
+    if (d.length > 2) res = `${d.substring(0, 2)}.${d.substring(2)}`
+    if (d.length > 5) res = `${d.substring(0, 2)}.${d.substring(2, 5)}.${d.substring(5)}`
+    if (d.length > 8) res = `${d.substring(0, 2)}.${d.substring(2, 5)}.${d.substring(5, 8)}/${d.substring(8)}`
+    if (d.length > 12) res = `${d.substring(0, 2)}.${d.substring(2, 5)}.${d.substring(5, 8)}/${d.substring(8, 12)}-${d.substring(12)}`
+    return res
   }
-  return digits.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5')
+}
+
+function formatCep(v: string) {
+  const d = v.replace(/\D/g, '').substring(0, 8)
+  if (d.length > 5) return `${d.substring(0, 5)}-${d.substring(5)}`
+  return d
 }
 
 function validateDoc(doc: string) {
@@ -59,7 +78,9 @@ export default function CadastroPage() {
   const [error, setError] = useState('')
   const [showPw, setShowPw] = useState(false)
 
-  const logoUrl = 'https://qzgjsyeeoydctzbjdxju.supabase.co/storage/v1/object/public/agendei_storage/Logotipo/logo%20agendei%20clpng.png'
+  const logoUrl = themeMode === 'dark'
+    ? 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logo.png'
+    : 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logopb.png'
 
   const [form, setForm] = useState({
     nome: '', documento: '', telefone: '', email: '', senha: '',
@@ -208,7 +229,7 @@ export default function CadastroPage() {
                 </div>
                 <div className="form-group">
                   <label className="form-label">CEP</label>
-                  <input className="form-input" value={form.cep} onChange={e => set('cep', e.target.value)} placeholder="00000-000" />
+                  <input className="form-input" value={form.cep} onChange={e => set('cep', formatCep(e.target.value))} placeholder="00000-000" maxLength={9} />
                 </div>
               </div>
 

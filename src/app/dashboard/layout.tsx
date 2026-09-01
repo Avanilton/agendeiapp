@@ -42,7 +42,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const [showNotifMenu, setShowNotifMenu] = useState(false)
   const unreadCount = notifications.filter(n => !n.read).length
 
-  const logoUrl = 'https://qzgjsyeeoydctzbjdxju.supabase.co/storage/v1/object/public/agendei_storage/Logotipo/logo%20agendei%20clpng.png'
+  const logoUrl = themeMode === 'dark'
+    ? 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logo.png'
+    : 'https://wldifxcwobyeqbvwatgr.supabase.co/storage/v1/object/public/img/logopb.png'
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768)
