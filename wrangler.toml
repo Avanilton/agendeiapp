@@ -6,10 +6,3 @@ compatibility_flags = ["nodejs_compat"]
 [assets]
 directory = ".open-next/assets"
 binding = "ASSETS"
-
-[vars]
-# Coloque as chaves REAIS no painel do Cloudflare (Settings > Variables and Secrets)
-# O GitHub bloqueia o push (Secret Scanning) se você colocar chaves reais aqui!
-NEXT_PUBLIC_SUPABASE_URL = "SUA_URL_AQUI"
-NEXT_PUBLIC_SUPABASE_ANON_KEY = "SUA_CHAVE_ANON_AQUI"
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY = "SUA_CHAVE_PUBLISHABLE_AQUI"
